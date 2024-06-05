@@ -22,6 +22,11 @@ module.exports = {
       gasPrice: 1000000000,
     },
 
+    base_sepolia: {
+      url: `https://sepolia.base.org`,
+      accounts: [process.env.WALLET_PRIVATE_KEY],
+    },
+
     sepolia: {
       url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY_SEPOLIA}`,
       accounts: [process.env.WALLET_PRIVATE_KEY],
