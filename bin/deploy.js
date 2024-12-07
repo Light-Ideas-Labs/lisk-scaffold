@@ -6,7 +6,7 @@ const deployToVercel = async () => {
   const spinner = ora("Deploying to Vercel...").start();
   
   // Change directory to react-app
-  const appDirectory = path.join(__dirname, "..", "packages", "react-app");
+  const appDirectory = path.join(__dirname, "..", "packages", "next-ts");
 
   try {
     process.chdir(appDirectory);

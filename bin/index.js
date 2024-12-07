@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-console.log("Create a simple Lisk Dapp Scaffold");
+console.log("Create a custom Ultimate Dapp Scaffold");
 const commander = require("commander");
 const { createAsync } = require("./create.js");
 const { deployToVercel } = require("./deploy.js");
