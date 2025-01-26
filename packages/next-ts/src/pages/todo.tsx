@@ -1,83 +1,100 @@
 "use client";
 
 import { useState } from "react";
-import { Text } from "../components/ui/text"; // Assuming you have a `Text` component in `ui`
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
+import { Text } from "../components/ui/text"; // Ensure you have this component
+import { Button } from "../components/ui/button"; // Ensure you have this component
+import { Input } from "../components/ui/input"; // Ensure you have this component
+
+import { useContracts } from "../blockchain/hooks/useContractsProvider";
 
 type Todo = {
-  id: number;
   text: string;
   completed: boolean;
 };
 
-export default function TodoPage() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [inputValue, setInputValue] = useState("");
+function useTestContractReads(): [ReadonlyArray<Todo> | null, () => Promise<void>] {
+  const contracts = useContracts();
+  const todoList = contracts.TodoList()
+  const [todos, setTodos] = useState<ReadonlyArray<Todo> | null>(null);
 
-  const addTodo = () => {
-    if (!inputValue.trim()) return;
-    const newTodo: Todo = {
-      id: Date.now(),
-      text: inputValue,
-      completed: false,
-    };
-    setTodos((prevTodos) => [newTodo, ...prevTodos]);
-    setInputValue("");
+  const fetchTodos = async () => {
+    try {
+      const { data } =  todoList.getAll.useRead();
+      console.log("todo what!!", data)
+      setTodos(data || []);
+    } catch (err) {
+      console.error("Error fetching todos:", err);
+      setTodos(null);
+    }
   };
 
-  const toggleTodoCompletion = (id: number) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    );
+  return [todos, fetchTodos];
+}
+
+function useTestContractWrites() {
+  const contracts = useContracts();
+  const todoList = contracts.TodoList();
+
+  return async (text: string) => {
+    try {
+      const { data } = todoList.add.useSimulateContract({ args: [text] });
+      if (data?.request) {
+        // await todoList.add.writeContract(data.request);
+        // console.log("Todo added successfully:", text);
+      }
+    } catch (err) {
+      console.error("Error adding todo:", err);
+    }
+  };
+}
+
+export default function TodoPage() {
+  const [todos, fetchTodos] = useTestContractReads();
+  const addTodo = useTestContractWrites();
+  const [newTodo, setNewTodo] = useState("");
+
+  const handleAdd = async () => {
+    if (!newTodo) return;
+    await addTodo(newTodo);
+    setNewTodo("");
+    await fetchTodos();
   };
 
   return (
     <div className="container px-4 py-12 mx-auto">
-      <Text.H1>Hello web3Clubs!</Text.H1>
+      <Text.H1>Todo List DApp</Text.H1>
 
       <Text.P>
-        If you&apos;re running Hardhat locally, you should see some data below:
+        This is a decentralized to-do list built with Hardhat, Next.js, and Wagmi.
       </Text.P>
 
-      <Text.H2 className="mt-8">To-Do List</Text.H2>
-      <div className="flex items-center gap-2 mt-4">
+      <Text.H2 className="mt-8">Your Todos</Text.H2>
+      <ul className="list-disc mt-4">
+        {todos && todos.length > 0 ? (
+          todos.map((todo, index) => (
+            <li key={index} className="flex items-center space-x-4">
+              <span>{todo.text}</span>
+              <span className={todo.completed ? "text-green-500" : "text-gray-500"}>
+                {todo.completed ? "Completed" : "Pending"}
+              </span>
+            </li>
+          ))
+        ) : (
+          <Text.P>No todos available. Add a new one!</Text.P>
+        )}
+      </ul>
+
+      <div className="mt-8">
         <Input
-          type="text"
-          placeholder="Add a new to-do"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={newTodo}
+          onChange={(e) => setNewTodo(e.target.value)}
+          placeholder="Enter a new todo"
+          className="w-full mb-4"
         />
-        <Button onClick={addTodo}>
-          Add
+        <Button onClick={handleAdd} className="w-full">
+          Add Todo
         </Button>
       </div>
-
-      {todos.length === 0 && (
-        <Text.P className="mt-4">No to-dos yet. Add one above!</Text.P>
-      )}
-
-      <ul className="mt-6 space-y-2">
-        {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className={`p-4 border rounded-lg flex justify-between items-center ${
-              todo.completed ? "bg-gray-100 line-through" : ""
-            }`}
-          >
-            <span>{todo.text}</span>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => toggleTodoCompletion(todo.id)}
-            >
-              {todo.completed ? "Mark Incomplete" : "Mark Complete"}
-            </Button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

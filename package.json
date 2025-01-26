@@ -1,7 +1,7 @@
 {
-  "name": "lisk-scaffold-dapp",
+  "name": "ultimate-scaffold-dapp",
   "version": "0.0.5",
-  "description": "Custom Lisk blockchain application scaffold",
+  "description": "ultimate custom  evm blockchain application scaffold starter dapp",
   "authors": "Jordan, Ronex, Antony",
   "private": true,
   "license": "MIT",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LiskAfricaEcosystem/scaffold-lisk.git"
+    "url": "git+https://github.com/Light-Ideas-Labs/ultimate-scaffold.git"
   },
   "bugs": {
-    "url": "https://github.com/LiskAfricaEcosystem/scaffold-lisk/issues"
+    "url": "https://github.com/Light-Ideas-Labs/ultimate-scaffold/issues"
   },
-  "homepage": "https://github.com/LiskAfricaEcosystem/scaffold-lisk/blob/main/README.md",
+  "homepage": "https://github.com/Light-Ideas-Labs/ultimate-scaffold/blob/main/README.md",
   "workspaces": [
     "bin/*",
     "packages/*"
@@ -33,15 +33,16 @@
   },
   "keywords": [
     "ethereum",
-    "lisk",
     "celo",
+    "lisk",
     "base",
-    "Dapp",
+    "ultimate",
+    "dapp",
     "blockchain",
     "scaffold"
   ],
   "bin": {
-    "lisk-scaffold-dapp": "bin/index.js"
+    "ultimate-scaffold-dapp": "bin/index.js"
   },
   "files": [
     "bin"

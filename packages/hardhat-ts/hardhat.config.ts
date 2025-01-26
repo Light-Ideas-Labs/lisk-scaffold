@@ -1,53 +1,61 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "hardhat-deploy";
 require("dotenv").config();
+
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "api-key"
+const SEPOLIA_ETHERSCAN_API_KEY = process.env.SEPOLIA_ETHERSCAN_API_KEY || "api-key"
+
+// Import MNEMONIC or single private key
+const MNEMONIC = process.env.MNEMONIC || "your mnemonic"
+const WALLET_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY
 
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
-  networks: {
-    sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY_SEPOLIA}`,
-      accounts: [String(process.env.WALLET_PRIVATE_KEY)],
+  namedAccounts: {
+    deployer: {
+      default: 0, // First account in the list
     },
-
+  },
+  networks: {
     ethereum: {
       url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY_MAIN}`,
-      accounts: [String(process.env.WALLET_PRIVATE_KEY)],
-      chainId: 44787,
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
 
-    lisk: {
-      url: "https://rpc.api.lisk.com",
-      accounts: [String(process.env.WALLET_PRIVATE_KEY)],
-      gasPrice: 1000000000,
-    },
-
-    "lisk-sepolia": {
-      url: "https://rpc.sepolia-api.lisk.com",
-      accounts: [String(process.env.WALLET_PRIVATE_KEY)],
-      gasPrice: 1000000000,
-    },
-
-    base_sepolia: {
-      url: `https://sepolia.base.org`,
-      accounts: [String(process.env.WALLET_PRIVATE_KEY)],
-    },
-
-    base_main: {
-      url: `https://sepolia.base.org`,
-      accounts: [String(process.env.WALLET_PRIVATE_KEY)],
-    },
-
-    alfajores: {
-      url: "https://alfajores-forno.celo-testnet.org",
-      accounts: [String(process.env.WALLET_PRIVATE_KEY)],
-      chainId: 44787,
+    sepolia: {
+      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY_SEPOLIA}`,
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
 
     celo: {
       url: "https://forno.celo.org",
-      accounts: [String(process.env.WALLET_PRIVATE_KEY)],
-      chainId: 42220,
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
+    },
+
+    alfajores: {
+      url: "https://alfajores-forno.celo-testnet.org",
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
+    },
+
+    lisk: {
+      url: "https://rpc.api.lisk.com",
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
+    },
+
+    liskSepolia: {
+      url: "https://rpc.sepolia-api.lisk.com",
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
+    },
+
+    base_main: {
+      url: `https://sepolia.base.org`,
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
+    },
+
+    baseSepolia: {
+      url: `https://sepolia.base.org`,
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
   },
 

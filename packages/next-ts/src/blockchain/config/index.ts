@@ -1,7 +1,7 @@
 import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import { getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { cookieStorage, createStorage, http } from 'wagmi';
-import { hardhat, mainnet, sepolia, celo, celoAlfajores, bscTestnet, base, baseSepolia, liskSepolia, lisk } from 'wagmi/chains';
+import { mainnet, sepolia, hardhat, celo, celoAlfajores, bscTestnet, base, baseSepolia, liskSepolia, lisk } from 'wagmi/chains';
 
 export const projectId = 'a8a94eaa29bf7b1d3a0d94172c58e6ac';
 
@@ -26,13 +26,14 @@ export const wagmiLiskconfig = getDefaultConfig({
 });
 
 export const wagmiConfig = defaultWagmiConfig({
-    chains: [mainnet, sepolia, celo, base, liskSepolia ], // required base, celo, bscTestnet,
+    chains: [mainnet, sepolia, hardhat, celo, base, liskSepolia ], // required base, celo, bscTestnet,
     projectId, // required
     metadata, // required
     ssr: true,
     transports: {
       [mainnet.id]: http(),
       [sepolia.id]: http(),
+      [hardhat.id]: http(),
       [liskSepolia.id]: http(),
       [base.id]: http(),
       [celo.id]: http(),

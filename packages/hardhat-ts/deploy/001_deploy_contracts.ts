@@ -1,5 +1,5 @@
 import hre from "hardhat";
-import { ContractAddresses } from "../../lib/contract-addresses";
+import { ContractAddresses } from "../lib/contract-addresses";
 
 async function deploySampleContract() {
 
@@ -39,13 +39,10 @@ async function main() {
     console.log(deployer.address)
     const deployedTodoListContract = await deployTodoList(deployer.address);
 
-  // Update contract addresses
-  const contractAddresses = {
-    SampleContract: deployedSampleContract.address,
-    TodoList: deployedTodoListContract.address, // Add TodoList here
-  };
-
-
+      // Create a todo during deployment
+  const todoTx = await deployedTodoListContract.add("Build the next big thing");
+  await todoTx.wait(); // Wait for the transaction to be mined
+  console.log("Todo added: 'Build the next big thing'");
 
   // If on localhost, update the contract addresses
   if (hre.network.name === "localhost") {

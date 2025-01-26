@@ -24,7 +24,7 @@
 You can quickly set up a new project using the command below:
 
 ```bash
-npx lisk-scaffold-dapp@latest create
+npx ultimate-scaffold-dapp@latest create
 
 ```
 

@@ -8,7 +8,7 @@ const Os = require("os");
 const { join } = require("path");
 const fs = require("fs");
 
-const BASE_URL = "https://github.com/LiskAfricaEcosystem/scaffold-lisk/";
+const BASE_URL = "https://github.com/Light-Ideas-Labs/ultimate-scaffold/"; 
 
 const createAsync = async () => {
 
@@ -96,20 +96,20 @@ const createAsync = async () => {
 
     let packageJson = {
       name: projectName,
-      version: "1.0.0",
-      description: "An Ultimate EVM Scaffold Dapp",
+      version: "0.0.5",
+      description: "ultimate evm compatible scaffold dapp",
       private: true,
       author: "Jordan, Ronex, Antony",
       license: "MIT",
       scripts: {},
       repository: {
         "type": "git",
-        "url": "git+https://github.com/LiskAfricaEcosystem/scaffold-lisk.git"
+        "url": "git+https://github.com/Light-Ideas-Labs/ultimate-scaffold.git"
       },
-      bugs: {"url": "https://github.com/LiskAfricaEcosystem/scaffold-lisk/issues"},
-      homepage: "https://github.com/LiskAfricaEcosystem/scaffold-lisk/blob/main/README.md",
+      bugs: {"url": "https://github.com/Light-Ideas-Labs/ultimate-scaffold/issues"},
+      homepage: "https://github.com/Light-Ideas-Labs/ultimate-scaffold/blob/main/README.md",
       workspaces: ["packages/*"],
-      keywords: ["scaffold", "ethereum", "celo", "base", "lisk", "dapp"],
+      keywords: ["ultimate", "scaffold", "ethereum", "celo", "base", "lisk", "avalanche", "scroll", "dapp"],
     }
 
     for (let x = 0; x < selectedPackages.length; x++) {
@@ -137,11 +137,11 @@ const createAsync = async () => {
       }
     }
 
-        /**
+     /**
      * Getting all packages selected by the user
      * First list them via echo packages/\*\/
      * Some string manipulation so that packages looks like
-     * eg:- ["next-ts", "hardhat"] etc...
+     * eg:- ["next-ts", "hardhat-js", "hardhat-ts"] etc...
      */
         let packagesStdOut;
         if (isWindows) {
@@ -188,7 +188,7 @@ const createAsync = async () => {
         shell.echo(JSON.stringify(packageJson, "", 4)).to("package.json");
 
         console.warn(chalk.red("Remember to change the git url using the command: git remote set-url origin new.git.url/here"));
-        console.log(chalk.green("\n\n🚀Your Lisk  starter DApp project has been successfully created!\n"));
+        console.log(chalk.green("\n\n🚀Your ultimate DApp project has been successfully created!\n"));
         console.log(chalk.yellow("Now you're all set to start your project!\n"));
         console.log(chalk.green("Run `yarn install` and `yarn dev` from packages/next-ts folder to start the project\n"));
         console.log(chalk.green("Run `yarn install` from packages/hardhat install dependencies\n"));
@@ -199,7 +199,6 @@ const createAsync = async () => {
 
 
     // ToDo: if project isn't web no need to netlify.toml
-    // ToDo: flutter project doesn't have package.json
     // ToDo: Change the name of the project in package.json for the generated packages.
     // ToDo: write back the changes to the package.json
 
