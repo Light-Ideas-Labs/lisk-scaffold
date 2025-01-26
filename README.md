@@ -5,7 +5,11 @@
 
 ### Overview
 
-🧪 **Ultimate EVM Scaffold** is an open-source, robust framework designed to accelerate the development and deployment of decentralized applications (DApps) on the Lisk platform. It equips developers with essential tools and frameworks, making the initial steps of building a DApp straightforward and efficient.
+---
+
+🧪 **Ultimate EVM Scaffold** is an open-source, robust framework designed to accelerate the development and deployment of decentralized applications (DApps) on any EVM platform. It equips developers with essential tools and frameworks, making the initial steps of building a DApp straightforward and efficient.
+
+---
 
 <!-- Getting Started -->
 
@@ -13,8 +17,10 @@
 
 #### Prerequisites
 
+Before you begin, make sure you have the following installed:
+
 - [Node.js (>= v10.x) or higher](https://nodejs.org/en/download)
-- [Yarn]([v1]((https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install)))
+- [pnpm](https://pnpm.io/installation) or [Yarn](https://classic.yarnpkg.com/en/docs/install/)  or [npm](https://www.npmjs.com/)
 - [Git](https://git-scm.com/downloads)
 
 <!-- Installation Guide -->
@@ -28,19 +34,34 @@ npx ultimate-scaffold-dapp@latest create
 
 ```
 
+Or, for pnpm users:
+
+```bash
+pnpm dlx ultimate-scaffold-dapp@latest create
+
+```
+
+Or, with yarn:
+
+```bash
+yarn dlx ultimate-scaffold-dapp@latest create
+```
+
 <!-- Frameworks Available -->
 
 ## Key Components
 
-The following components are available in this scaffolding tool:
+The scaffold supports the following frameworks:
 
-- **Frontend Framework:** Next.js
-  - Wagmi
-  - Viem
-  - RainbowKit
-  - Typescript
-- **Backend Framework:** Hardhat
-  - Javascript
+- **Frontend Framework:**
+- Next.js
+  - Wagmi  (for wallet connection)
+  - Viem (for blockchain interactions)
+  - RainbowKit  (for wallet UI)
+  - Typescript (default)
+- **Backend Framework:**
+- Hardhat
+  - Javascript  (default) or TypeScript
 
 <!--  Usage Examples -->
 
@@ -48,16 +69,114 @@ The following components are available in this scaffolding tool:
 
 Follow these steps to create and configure your DApp project:
 
-1. **Select Front-End and Smart Contract Frameworks:** During setup, you'll choose from available frameworks like React for the frontend and Hardhat for smart contracts.
-2. **Project Configuration:** Provide a project name, which will be used to set up the directory structure.
-3. **Customization and Setup:** The tool automatically clones necessary components and configures your project based on the selections.
-4. **Finalization:** Once setup is complete, essential information and next steps are displayed, ensuring you are ready to begin development immediately.
+1. **Run the CLI Tool:** Use the create command to scaffold a project:
+
+  ```bash
+  npx ultimate-scaffold-dapp@latest create
+  ```
+
+2. **Select Front-End and Smart Contract Frameworks:** During the setup, you'll choose from available frameworks:
+   - Frontend: Next.js (with TypeScript)
+   - Smart Contracts: Hardhat (JavaScript/TypeScript)
+  
+3. **Project Configuration:** Provide a namefor your project, which will be used to set up the directory structure.
+
+4. Install Dependencies: Navigate to the project directory and install dependencies using your preferred package manager:
+
+```bash
+pnpm install
+```
+
+Or:
+
+```bash
+yarn install
+```
+
+Or:
+
+```bash
+npm install
+```
+
+5. **Start the Project:** Run the following command to start the development server:
+
+- Start the frontend:
+  
+```bash
+pnpm install
+```
+
+Or:
+
+```bash
+yarn install
+```
+
+Or:
+
+```bash
+npm install
+```
+
+- **Compile and deploy the smart contracts:**
+
+```bash
+pnpm hardhat copile
+```
+
+```bash
+pnpm hardhat run scripts/deploy.js
+```
 
 <!-- Config  -->
 
 ## Advanced Configuration
 
-Generated projects include a `package.json` with metadata relevant to your DApp, which can be customized further. Configuration files for different packages are tailored during the setup to match project specifications.
+Generated projects include a `package.json` file tailored for your project. You can modify the following as needed:
+
+- Add more scripts for testing, building, or deploying.
+- Customize configuration files like hardhat.config.js or tsconfig.json.
+
+<!-- CLI Commands -->
+## CLI Commands
+
+The CLI offers the following commands:
+
+- Scaffold a Project:
+  
+```bash
+npx ultimate-scaffold-dapp create
+```
+
+- Deploy the Project:
+  
+```bash
+npx ultimate-scaffold-dapp deploy
+```
+
+- View Help:
+  
+```bash
+npx ultimate-scaffold-dapp --help
+```
+
+<!-- Sample scripts for Your Project -->
+
+## Sample scripts for Your Project
+
+Here’s an example of scripts that will be included in your package.json:
+
+```json
+"scripts": {
+  "frontend:dev": "yarn workspace @ultimate-scaffold/next-ts dev",
+  "frontend:build": "yarn workspace @ultimate-scaffold/next-ts build",
+  "frontend:start": "yarn workspace @ultimate-scaffold/next-ts start",
+  "hardhat:compile": "yarn workspace @ultimate-scaffold/hardhat-ts compile",
+  "hardhat:test": "yarn workspace @ultimate-scaffold/hardhat-ts test",
+  "hardhat:deploy": "yarn workspace @ultimate-scaffold/hardhat-ts run scripts/deploy.js"
+}
+```
 
 <!-- Support and Contribution -->
 
@@ -65,14 +184,12 @@ Generated projects include a `package.json` with metadata relevant to your DApp,
 
 For issues, suggestions, or contributions, please visit our GitHub repository.
 
+👉 GitHub Repository
+
 ## Additional Notes
 
 - If your project setup does not involve web development, modifications like `netlify.toml` might be unnecessary.
 - Projects such as those developed with Flutter might not utilize a `package.json`.
-
-## License
-
-This project is licensed under the MIT License.
 
 ## Maintainers
 
@@ -80,18 +197,29 @@ This project is licensed under the MIT License.
 - @Ronexlemon
 - @anthonykimani
 
+## License
+
+This project is licensed under the MIT License.
+
 <!-- Badges -->
 
 ## Using the CLI
 
-- additionally you can scaffold a project easily by using the command `npx lisk-scaffold-dapp@latest create`
-- `npx lisk-scaffold-dapp`
+- additionally you can scaffold a project easily by using the command 
+  `npx ultimate-scaffold-dapp@latest create`
+  `npx ultimate-scaffold-dapp`
 
-<!-- 
-  "scripts": {
-    "react-app:dev": "yarn workspace @scaffold-lisk/react-app dev",
-    "react-app:build": "yarn workspace @scaffold-lisk/react-app build",
-    "react-app:start": "yarn workspace @scaffold-lisk/react-app start",
-    "react-app:lint": "yarn workspace @scaffold-lisk/react-app lint",
-    "hardhat:compile": "yarn workspace @scaffold-lisk/hardhat compile"
-  }, -->
+<!-- Happy Coding  -->
+
+## Happy Coding! 🎉
+
+---
+
+### Key Updates
+
+1. **Replaced `lisk` references with `ultimate`** to align with the scaffold's branding.
+2. Updated CLI commands and sample `package.json` scripts.
+3. Added support for multiple package managers (`pnpm`, `yarn`, `npm`).
+4. Streamlined the sections for improved readability and usability.
+
+Let me know if you'd like further modifications! 🚀
