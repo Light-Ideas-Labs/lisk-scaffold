@@ -87,33 +87,23 @@ Follow these steps to create and configure your DApp project:
 pnpm install
 ```
 
-Or:
-
 ```bash
 yarn install
 ```
-
-Or:
 
 ```bash
 npm install
 ```
 
-5. **Start the Project:** Run the following command to start the development server:
-
-- Start the frontend:
+1. **Start the Project:** Run the following command to start the development server:
   
 ```bash
 pnpm install
 ```
 
-Or:
-
 ```bash
 yarn install
 ```
-
-Or:
 
 ```bash
 npm install
@@ -142,21 +132,15 @@ Generated projects include a `package.json` file tailored for your project. You 
 ## CLI Commands
 
 The CLI offers the following commands:
-
-- Scaffold a Project:
   
 ```bash
 npx ultimate-scaffold-dapp create
 ```
-
-- Deploy the Project:
   
 ```bash
 npx ultimate-scaffold-dapp deploy
 ```
 
-- View Help:
-  
 ```bash
 npx ultimate-scaffold-dapp --help
 ```
