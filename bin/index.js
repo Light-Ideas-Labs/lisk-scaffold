@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-console.log("Create a simple Lisk Dapp Scaffold");
+console.log("Create a custom Ultimate Dapp Scaffold");
 const commander = require("commander");
 const { createAsync } = require("./create.js");
 const { deployToVercel } = require("./deploy.js");
@@ -14,7 +14,7 @@ program
 .command("create")
 .option("-t, --template <name>", "Specify a template to use for the project")
 .option("-f, --force", "Force project creation even if the output directory is not empty")
-.description("Generate a new Lisk project")
+.description("Generate a new ultimate dapp project")
 .action(createAsync);
 
 program
@@ -25,9 +25,9 @@ program
 program.on("--help", () => {
   console.log("");
   console.log("Examples:");
-  console.log("  $ lisk-scaffold-dapp create");
-  console.log("  $ lisk-scaffold-dapp create --template my-template");
-  console.log("  $ lisk-scaffold-dapp deploy");
+  console.log("  $ ultimate-scaffold-dapp create");
+  console.log("  $ ultimate-scaffold-dapp create --template my-template");
+  console.log("  $ ultimate-scaffold-dapp deploy");
 });
 
 if (process.stdin.isTTY) {

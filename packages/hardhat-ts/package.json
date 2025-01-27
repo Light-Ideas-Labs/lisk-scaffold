@@ -1,0 +1,45 @@
+{
+  "name": "@ultimate-scaffold-dapp/hardhat-ts",
+  "version": "0.0.5",
+  "license": "MIT",
+  "main": "./dist/index",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "node": "hardhat node",
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "console": "npx hardhat console",
+    "share": "remixd -s . --remix-ide https://remix.ethereum.org",
+    "build": "pnpm exec hardhat compile && pnpm exec ts-node ./lib/abi-exports.ts && tsup ./abis-exports/index.ts --dts",
+    "node:verify": "npx hardhat verify --network sepolia",
+    "deploy:local": "npx hardhat run ./deploy/001_deploy_contracts.ts --network localhost",
+    "deploy:normal": "npx hardhat run ./deploy/001_deploy_contracts.ts --network sepolia",
+    "deploy:ignition": "npx hardhat ignition deploy ./deploy/001_deploy_contracts.ts --network sepolia"
+  },
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.12",
+    "@nomicfoundation/hardhat-verify": "^2.0.12",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.10",
+    "@types/node": ">=18.0.0",
+    "chai": "^4.5.0",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.4",
+    "hardhat": "^2.22.16",
+    "hardhat-deploy": "^0.14.0",
+    "hardhat-gas-reporter": "^1.0.10",
+    "solidity-coverage": "^0.8.14",
+    "ts-node": ">=8.0.0",
+    "tsup": "^8.3.5",
+    "typechain": "^8.3.2",
+    "typescript": "~5.0.4"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0"
+  }
+}

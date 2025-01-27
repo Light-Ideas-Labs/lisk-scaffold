@@ -1,45 +1,50 @@
 {
-  "name": "lisk-scaffold-dapp",
-  "version": "0.0.4",
-  "description": "Custom Lisk blockchain application scaffold",
+  "name": "ultimate-scaffold-dapp",
+  "version": "0.0.5",
+  "description": "ultimate custom  evm blockchain application scaffold starter dapp",
+  "authors": "Jordan, Ronex, Antony",
+  "private": true,
+  "license": "MIT",
+  "main": "bin/index.js",
+  "scripts": {
+    "deploy": "node bin/index.js deploy"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LiskAfricaEcosystem/scaffold-lisk.git"
+    "url": "git+https://github.com/Light-Ideas-Labs/ultimate-scaffold.git"
   },
-  "authors": "Jordan, Ronex, Antony",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LiskAfricaEcosystem/scaffold-lisk/issues"
+    "url": "https://github.com/Light-Ideas-Labs/ultimate-scaffold/issues"
   },
-  "homepage": "https://github.com/LiskAfricaEcosystem/scaffold-lisk/blob/main/README.md",
-  "private": true,
+  "homepage": "https://github.com/Light-Ideas-Labs/ultimate-scaffold/blob/main/README.md",
   "workspaces": [
-    "bin/*"
+    "bin/*",
+    "packages/*"
   ],
   "dependencies": {
-    "chalk": "4.1.2",
-    "commander": "^9.5.0",
-    "fs-extra": "^10.1.0",
-    "inquirer": "^8.2.6",
-    "node-emoji": "^1.11.0",
-    "ora": "5.4.1",
+    "chalk": "5.3.0",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^12.1.0",
+    "node-emoji": "^2.2.0",
+    "ora": "8.1.1",
     "shelljs": "^0.8.5",
     "yargs": "17.5.1"
   },
-  "main": "bin/index.js",
   "keywords": [
+    "ethereum",
+    "celo",
     "lisk",
-    "Dapp",
+    "base",
+    "ultimate",
+    "dapp",
     "blockchain",
     "scaffold"
   ],
   "bin": {
-    "lisk-scaffold-dapp": "bin/index.js"
+    "ultimate-scaffold-dapp": "bin/index.js"
   },
   "files": [
     "bin"
-  ],
-  "scripts": {
-    "deploy": "node bin/index.js deploy"
-  }
+  ]
 }

@@ -8,19 +8,21 @@ const Os = require("os");
 const { join } = require("path");
 const fs = require("fs");
 
-const BASE_URL = "https://github.com/LiskAfricaEcosystem/scaffold-lisk/";
+const BASE_URL = "https://github.com/Light-Ideas-Labs/ultimate-scaffold/"; 
 
 const createAsync = async () => {
 
   let availablePackages = {
-    "react-app": "React",
-    hardhat: "Hardhat",
+    "next-ts": "Next-ts",
+    hardhatJS: "Hardhat-JS",
+    hardhatTS: "Hardhat-TS",
     foundry: "Foundry",
   };
 
   let packageNameMap = {
-    "react-app": "react-app",
-    hardhat: "hardhat",
+    "next-ts": "next-ts",
+    hardhatJS: "hardhat-js",
+    hardhatTS: "hardhat-ts",
     foundry: "foundry",
   };
 
@@ -33,7 +35,7 @@ const createAsync = async () => {
     message: "Choose front-end framework:",
     default: Object.values(availablePackages)[0],
     choices: [
-      availablePackages["react-app"],
+      { name: availablePackages["next-ts"], value: "next-ts" },
     ],
   });
 
@@ -53,10 +55,12 @@ const createAsync = async () => {
     type: "list",
     name: "scFramework",
     message: "Choose smart-contract framework:",
-    default: availablePackages["hardhat"],
+    default: availablePackages["hardhat-js"],
     choices: [
-      availablePackages["hardhat"],
-      availablePackages["foundry"],
+      { name: availablePackages["hardhatJS"], value: "hardhat-js" },
+      { name: availablePackages["hardhatTS"], value: "hardhat-ts" },
+      { name: availablePackages["foundry"], value: "foundry" },
+      { name: "None", value: "none" },
     ],
   });
 
@@ -83,7 +87,7 @@ const createAsync = async () => {
     await isOutputDirectoryEmpty(outputDir);
 
     // showing the loader
-    const spinner = loading(`Generating custom Lisk DApp project with the following packages: ${selectedPackages.join(", ")}...\n`);
+    const spinner = loading(`Generating a custom Ultimate EVM DApp project with the following packages: ${selectedPackages.join(", ")}...\n`);
     
     // shell commands to clone and trim the required directories
     shell.cd(pwd);
@@ -92,20 +96,20 @@ const createAsync = async () => {
 
     let packageJson = {
       name: projectName,
-      version: "1.0.0",
-      description: "A Lisk Dapp Scaffold Dapp",
+      version: "0.0.5",
+      description: "ultimate evm compatible scaffold dapp",
       private: true,
       author: "Jordan, Ronex, Antony",
       license: "MIT",
       scripts: {},
       repository: {
         "type": "git",
-        "url": "git+https://github.com/LiskAfricaEcosystem/scaffold-lisk.git"
+        "url": "git+https://github.com/Light-Ideas-Labs/ultimate-scaffold.git"
       },
-      bugs: {"url": "https://github.com/LiskAfricaEcosystem/scaffold-lisk/issues"},
-      homepage: "https://github.com/LiskAfricaEcosystem/scaffold-lisk/blob/main/README.md",
+      bugs: {"url": "https://github.com/Light-Ideas-Labs/ultimate-scaffold/issues"},
+      homepage: "https://github.com/Light-Ideas-Labs/ultimate-scaffold/blob/main/README.md",
       workspaces: ["packages/*"],
-      keywords: ["lisk", "dapp"],
+      keywords: ["ultimate", "scaffold", "ethereum", "celo", "base", "lisk", "avalanche", "scroll", "dapp"],
     }
 
     for (let x = 0; x < selectedPackages.length; x++) {
@@ -117,7 +121,7 @@ const createAsync = async () => {
       });
 
       // update front-end web3 library
-      if (package == packageNameMap["react-app"]) {
+      if (package == packageNameMap["next-ts"]) {
         let localPackageJson = shell.cat(`packages/${package}/package.json`);
         let projectPackage = JSON.parse(localPackageJson);
 
@@ -133,11 +137,11 @@ const createAsync = async () => {
       }
     }
 
-        /**
+     /**
      * Getting all packages selected by the user
      * First list them via echo packages/\*\/
      * Some string manipulation so that packages looks like
-     * eg:- ["react-app", "hardhat"] etc...
+     * eg:- ["next-ts", "hardhat-js", "hardhat-ts"] etc...
      */
         let packagesStdOut;
         if (isWindows) {
@@ -184,18 +188,17 @@ const createAsync = async () => {
         shell.echo(JSON.stringify(packageJson, "", 4)).to("package.json");
 
         console.warn(chalk.red("Remember to change the git url using the command: git remote set-url origin new.git.url/here"));
-        console.log(chalk.green("\n\n🚀Your Lisk  starter DApp project has been successfully created!\n"));
+        console.log(chalk.green("\n\n🚀Your ultimate DApp project has been successfully created!\n"));
         console.log(chalk.yellow("Now you're all set to start your project!\n"));
-        console.log(chalk.green("Run `yarn install` and `yarn dev` from packages/react folder to start the project\n"));
+        console.log(chalk.green("Run `yarn install` and `yarn dev` from packages/next-ts folder to start the project\n"));
         console.log(chalk.green("Run `yarn install` from packages/hardhat install dependencies\n"));
-        console.log(chalk.green("Thank you for using Lisk Scaffold Dapp! If you have any questions or need further assistance, please refer to the README or reach out to our team.\n"));
+        console.log(chalk.green("Thank you for using Ultimate Scaffold Dapp! If you have any questions or need further assistance, please refer to the README or reach out to our team.\n"));
         console.log(chalk.blue("Happy coding! 🎉\n\n"));
   }
 }
 
 
     // ToDo: if project isn't web no need to netlify.toml
-    // ToDo: flutter project doesn't have package.json
     // ToDo: Change the name of the project in package.json for the generated packages.
     // ToDo: write back the changes to the package.json
 

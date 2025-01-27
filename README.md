@@ -1,11 +1,11 @@
 <!-- Title -->
-# Lisk Scaffold
+# Ultimate EVM Scaffold
 
-## Version 0.0.4
+## Version 0.0.5
 
 ### Overview
 
-🧪 **Lisk Scaffold DApp** is an open-source, robust framework designed to accelerate the development and deployment of decentralized applications (DApps) on the Lisk platform. It equips developers with essential tools and frameworks, making the initial steps of building a DApp straightforward and efficient.
+🧪 **Ultimate EVM Scaffold** is an open-source, robust framework designed to accelerate the development and deployment of decentralized applications (DApps) on the Lisk platform. It equips developers with essential tools and frameworks, making the initial steps of building a DApp straightforward and efficient.
 
 <!-- Getting Started -->
 
@@ -24,7 +24,7 @@
 You can quickly set up a new project using the command below:
 
 ```bash
-npx lisk-scaffold-dapp@latest create
+npx ultimate-scaffold-dapp@latest create
 
 ```
 
