@@ -1,12 +1,14 @@
-const inquirer = require("inquirer");
-const shell = require("shelljs");
-const chalk = require("chalk");
-const ora = require("ora");
-const emoji = require("node-emoji");
-const { ensureDir, readdir } = require("fs-extra");
-const Os = require("os");
-const { join } = require("path");
-const fs = require("fs");
+import inquirer from "inquirer";
+import shell from "shelljs";
+import chalk from "chalk";
+import ora from "ora";
+import * as emoji from "node-emoji";
+import fsExtra from "fs-extra";
+import Os from "os";
+import { join } from "path";
+import fs from "fs";
+
+const { ensureDir, readdir } = fsExtra;
 
 const BASE_URL = "https://github.com/Light-Ideas-Labs/ultimate-scaffold/"; 
 
@@ -113,26 +115,26 @@ const createAsync = async () => {
     }
 
     for (let x = 0; x < selectedPackages.length; x++) {
-      let package = selectedPackages[x];
+      let packages = selectedPackages[x];
 
       // clone to local only the projects user wants
-      shell.exec(`git sparse-checkout add packages/${package}`, {
+      shell.exec(`git sparse-checkout add packages/${packages}`, {
         silent: true,
       });
 
       // update front-end web3 library
-      if (package == packageNameMap["next-ts"]) {
-        let localPackageJson = shell.cat(`packages/${package}/package.json`);
+      if (packages == packageNameMap["next-ts"]) {
+        let localPackageJson = shell.cat(`packages/${packages}/package.json`);
         let projectPackage = JSON.parse(localPackageJson);
 
         shell
           .echo(JSON.stringify(projectPackage, "", 4))
-          .to(`packages/${package}/package.json`);
+          .to(`packages/${packages}/package.json`);
 
         Object.keys(projectPackage.scripts).forEach((key) => {
           packageJson.scripts[
-            `${packageNameMap[package]}:${key}`
-          ] = `yarn workspace @${projectName}/${package} ${key}`;
+            `${packageNameMap[packages]}:${key}`
+          ] = `yarn workspace @${projectName}/${packages} ${key}`;
         });
       }
     }
@@ -226,6 +228,6 @@ function isWindows() {
   return Os.platform() === "win32";
 }
 
-module.exports = {
+export {
   createAsync,
-};
+}

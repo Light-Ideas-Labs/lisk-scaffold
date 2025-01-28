@@ -3,11 +3,13 @@
   "version": "0.0.5",
   "description": "ultimate custom  evm blockchain application scaffold starter dapp",
   "authors": "Jordan, Ronex, Antony",
-  "private": true,
+  "private": false,
+  "type": "module",
   "license": "MIT",
   "main": "bin/index.js",
   "scripts": {
-    "deploy": "node bin/index.js deploy"
+    "deploy": "node bin/index.js",
+    "test-local": "node bin/index.js create"
   },
   "repository": {
     "type": "git",

@@ -1,10 +1,11 @@
 #! /usr/bin/env node
-console.log("Create a custom Ultimate Dapp Scaffold");
-const commander = require("commander");
-const { createAsync } = require("./create.js");
-const { deployToVercel } = require("./deploy.js");
+import { Command } from "commander";
+import { createAsync } from "./create.js";
+// import { deployToVercel } from "./deploy.js";
 
-const program = new commander.Command();
+console.log("Create a custom Ultimate Scaffold Dapp");
+
+const program = new Command();
 
 let stdin = {
   stdin: "",
@@ -17,10 +18,10 @@ program
 .description("Generate a new ultimate dapp project")
 .action(createAsync);
 
-program
-  .command("deploy")
-  .description("Deploy the Next.js app to Vercel")
-  .action(deployToVercel);
+// program
+//   .command("deploy")
+//   .description("Deploy the Next.js app to Vercel")
+//   .action(deployToVercel);
 
 program.on("--help", () => {
   console.log("");

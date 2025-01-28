@@ -189,7 +189,7 @@ This project is licensed under the MIT License.
 
 ## Using the CLI
 
-- additionally you can scaffold a project easily by using the command 
+- additionally you can scaffold a project easily by using the command
   `npx ultimate-scaffold-dapp@latest create`
   `npx ultimate-scaffold-dapp`
 
