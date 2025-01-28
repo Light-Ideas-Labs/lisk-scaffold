@@ -32,6 +32,6 @@ const deployToVercel = async () => {
   }
 };
 
-module.exports = {
+export {
   deployToVercel,
 };
