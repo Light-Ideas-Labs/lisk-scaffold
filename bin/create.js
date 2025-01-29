@@ -13,6 +13,8 @@ const { ensureDir, readdir } = fsExtra;
 const BASE_URL = "https://github.com/Light-Ideas-Labs/ultimate-scaffold/"; 
 
 const createAsync = async () => {
+  try {
+    console.log(chalk.blue("Create a custom Ultimate Dapp"));
 
   let availablePackages = {
     "next-ts": "Next-ts",
@@ -196,6 +198,16 @@ const createAsync = async () => {
         console.log(chalk.green("Run `yarn install` from packages/hardhat install dependencies\n"));
         console.log(chalk.green("Thank you for using Ultimate Scaffold Dapp! If you have any questions or need further assistance, please refer to the README or reach out to our team.\n"));
         console.log(chalk.blue("Happy coding! 🎉\n\n"));
+  } 
+} catch (error) {
+    if (error.isTtyError) {
+      console.error(chalk.red("Prompt couldn't be rendered in the current environment."));
+    } else if (error.message.includes("force closed")) {
+      console.log(chalk.yellow("Process interrupted. Exiting gracefully."));
+    } else {
+      console.error(chalk.red("An unexpected error occurred:"), error);
+    }
+    process.exit(1);
   }
 }
 
