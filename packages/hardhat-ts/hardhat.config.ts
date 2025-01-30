@@ -38,17 +38,17 @@ const config: HardhatUserConfig = {
       accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
 
-    celo: {
+    celoMainnet: {
       url: "https://forno.celo.org",
       accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
 
-    alfajores: {
+    celoAlfajores: {
       url: "https://alfajores-forno.celo-testnet.org",
       accounts: WALLET_PRIVATE_KEY  ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
 
-    lisk: {
+    liskMainnet: {
       url: "https://rpc.api.lisk.com",
       accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
@@ -58,7 +58,7 @@ const config: HardhatUserConfig = {
       accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
 
-    base_main: {
+    baseMainet: {
       url: `https://sepolia.base.org`,
       accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : { mnemonic: MNEMONIC },
     },
@@ -75,10 +75,10 @@ const config: HardhatUserConfig = {
       mainnet: `${ETHERSCAN_API_KEY}`, // Ethereum mainnet
       sepolia: `${SEPOLIA_ETHERSCAN_API_KEY}`,   // Ethereum Sepolia testnet
       celo: "YOUR_CELOSCAN_API_KEY",     // Celo mainnet
-      alfajores: "123",                  // Celo Alfajores testnet (placeholder if no key is required)
+      celoAlfajores: "123",                  // Celo Alfajores testnet (placeholder if no key is required)
       base: "YOUR_BASESCAN_API_KEY",     // Base mainnet
-      "base-sepolia": "123",             // Base Goerli testnet
-      "lisk-sepolia": "123",             // Use "123" as a placeholder, because Blockscout doesn't need a real API key, and Hardhat will complain if this property isn't set.
+      baseSepolia: "123",             // Base Goerli testnet
+      liskSepolia: "123",             // Use "123" as a placeholder, because Blockscout doesn't need a real API key, and Hardhat will complain if this property isn't set.
     },
     customChains: [
       // Custom chain for Lisk Sepolia

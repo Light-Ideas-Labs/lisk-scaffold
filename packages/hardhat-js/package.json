@@ -1,6 +1,6 @@
 {
   "name": "@ultimate-scaffold-dapp/hardhat-js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
