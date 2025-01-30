@@ -3,8 +3,6 @@ import { Command } from "commander";
 import { createAsync } from "./create.js";
 // import { deployToVercel } from "./deploy.js";
 
-console.log("Create a custom Ultimate Scaffold Dapp");
-
 const program = new Command();
 
 let stdin = {
@@ -15,7 +13,7 @@ program
 .command("create")
 .option("-t, --template <name>", "Specify a template to use for the project")
 .option("-f, --force", "Force project creation even if the output directory is not empty")
-.description("Generate a new ultimate dapp project")
+.description("Generate a new custom ultimate dapp project")
 .action(createAsync);
 
 // program
@@ -42,6 +40,12 @@ if (process.stdin.isTTY) {
   });
   process.stdin.on("end", () => program.parse(process.argv));
 }
+
+// Gracefully handle Ctrl+C
+process.on("SIGINT", () => {
+  console.log("\nProcess interrupted. Exiting...");
+  process.exit(0);
+});
 
 process.on("uncaughtException", (err) => {
   if (err.code === "EADDRINUSE") {

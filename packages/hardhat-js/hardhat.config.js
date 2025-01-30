@@ -21,16 +21,15 @@ module.exports = {
       chainId: 44787,
     },
 
-    'lisk': {
+    lisk: {
       url: 'https://rpc.api.lisk.com',
       accounts: [process.env.WALLET_PRIVATE_KEY],
       gasPrice: 1000000000,
     },
     
-    'lisk-sepolia': {
+    liskSepolia: {
       url: 'https://rpc.sepolia-api.lisk.com',
-      accounts: [process.env.WALLET_PRIVATE_KEY],
-      gasPrice: 1000000000,
+      accounts: [process.env.WALLET_PRIVATE_KEY]
     },
 
     base_sepolia: {
@@ -46,13 +45,11 @@ module.exports = {
     alfajores: {
       url: "https://alfajores-forno.celo-testnet.org",
       accounts: [process.env.WALLET_PRIVATE_KEY],
-      chainId: 44787,
     },
     
     celo: {
       url: "https://forno.celo.org",
       accounts: [process.env.WALLET_PRIVATE_KEY],
-      chainId: 42220,
     },
   },
 
